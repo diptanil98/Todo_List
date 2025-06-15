@@ -26,7 +26,7 @@ const TodoApp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!task.trim()) return;
+        if (!task.trim()) return alert("Please enter a task.");
         add();
     }
 
