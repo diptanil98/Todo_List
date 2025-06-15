@@ -34,10 +34,17 @@ const TodoApp = () => {
         setTask(e.target.value);
     };
 
-    const deleteTodo = (index) => {
-        const newTodo = todo.filter((_, i) => i !== index);
-        setTodo(newTodo);
-    };
+     const deleteTodo = (index) => {
+    const newTodo = todo.filter((_, i) => i !== index);
+    const newChecked = {};
+    Object.keys(checkedItems).forEach((key) => {
+      const k = parseInt(key);
+      if (k < index) newChecked[k] = checkedItems[k];
+      if (k > index) newChecked[k - 1] = checkedItems[k];
+    });
+    setTodo(newTodo);
+    setCheckedItems(newChecked);
+  };
 
     const handleCheck = (index) => {
         setCheckedItems(prev => ({
